@@ -1,3 +1,17 @@
+function openTab(evt, Name) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(Name).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -500,9 +514,9 @@ function loadNames() {
     let ten = '';
     html += '<ul class="list">';
     for (let i = 0; i < amount; i++) {
-        ho = Ho[getRandomInt(0, Ho.length )];
-        dem = Dem[getRandomInt(0, Dem.length )];
-        ten = Ten[getRandomInt(0, Ten.length )];
+        ho = Ho[getRandomInt(0, Ho.length)];
+        dem = Dem[getRandomInt(0, Dem.length)];
+        ten = Ten[getRandomInt(0, Ten.length)];
         hodemten = ho + " " + dem + " " + ten;
         html += `<li>` + hodemten + `</li>`;
         text += hodemten + "\n";
@@ -520,6 +534,52 @@ function loadNames() {
         csv += "\n";
     });
     const csvbtn = document.querySelector('#csv');
+    var universalBOM = "\uFEFF";
+    csvbtn.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(universalBOM + csv);
+    csvbtn.download = 'NgauNhien.csv';
+    csvbtn.style.display = 'block';
+}
+
+function makeid(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
+}
+
+function loadUsers() {
+    const amount = document.getElementById('quantity_user').value;
+    const len = document.getElementById('len').value;
+    const ext = document.getElementById('ext').value;
+    let html = '<center><h2 style="font-family: math;">User ngẫu nhiên</h2></center>';
+    let text = '';
+    var csvFileData = [];
+    let userid = '';
+    let fullid = '';
+    html += '<ul class="list">';
+    for (let i = 0; i < amount; i++) {
+        userid = makeid(len);
+        fullid = userid + ext;
+        html += `<li>` + fullid + `</li>`;
+        text += fullid + "\n";
+        csvFileData.push([fullid, userid, ext]);
+    }
+    html += '</ul>'
+    document.querySelector('#result_user').innerHTML = html;
+    const txtbtn = document.querySelector('#txt_user');
+    txtbtn.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    txtbtn.setAttribute('download', "NgauNhien.txt");
+    txtbtn.style.display = 'block';
+    var csv = 'Đầy đủ,Id,Đuôi\n';
+    csvFileData.forEach(function(row) {
+        csv += row.join(',');
+        csv += "\n";
+    });
+    const csvbtn = document.querySelector('#csv_user');
     var universalBOM = "\uFEFF";
     csvbtn.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(universalBOM + csv);
     csvbtn.download = 'NgauNhien.csv';

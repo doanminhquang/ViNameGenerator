@@ -1,34 +1,69 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tạo Tên Viêt Nam Ngẫu Nhiên</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/custom.css">
-</head>
-<body>
-    <div class="container">
-        <div id="content" class="content">
-            <h1>Tạo Tên Ngẫu Nhiên</h1>
-            <div id="generate-names">
-                <div class="row">
-                    <div class="six columns">                        
-                        <label>Số lượng</label>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Tạo Tên Viêt Nam Ngẫu Nhiên</title>
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/skeleton.css">
+      <link rel="stylesheet" href="css/custom.css">
+   </head>
+   <body>
+      <div class="tab">
+         <button class="tablinks active" onclick="openTab(event, 'name')">Tạo tên</button>
+         <button class="tablinks" onclick="openTab(event, 'user')">Tạo tên tài khoản</button>
+      </div>
+      <div id="name" class="tabcontent" style="display: block">
+         <div class="container">
+            <div id="content" class="content">
+               <h1>Tạo Tên Ngẫu Nhiên</h1>
+               <div id="generate-names">
+                  <div class="row">
+                     <div class="six columns">                        
+                        <label>Số lượng
                         <input type="number" id="quantity" class="u-full-width" value="100">
-			<button class="button-primary u-full-width" style="font-family: math;" onclick="loadNames()">Tạo</button>
-			<a href="" id="txt" style="display: none"><button class="u-full-width">Tải Ngay File .txt</button></a>
-			<a href="" id="csv" style="display: none"><button class="u-full-width">Tải Ngay File .csv</button></a>
-                    </div>
-                    <div class="six columns">
+                        </label>
+                        <button class="button-primary u-full-width" style="font-family: math;" onclick="loadNames()">Tạo</button>
+                        <a href="" id="txt" style="display: none"><button class="u-full-width">Tải Ngay File .txt</button></a>
+                        <a href="" id="csv" style="display: none"><button class="u-full-width">Tải Ngay File .csv</button></a>
+                     </div>
+                     <div class="six columns">
                         <div id="result"></div>
-                    </div>
-                </div>                
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>    
-    <script src="js/app.js"></script>
-</body>
+         </div>
+      </div>
+      <div id="user" class="tabcontent">
+         <div class="container">
+            <div id="content" class="content">
+               <h1>Tạo Tên Tài Khoản Ngẫu Nhiên</h1>
+               <div id="generate-names">
+                  <div class="row">
+                     <div class="six columns">                        
+                        <label>Số lượng
+                        <input type="number" id="quantity_user" class="u-full-width" value="100">
+                        </label>
+                        <label>Độ dài
+                        <input type="number" id="len" class="u-full-width" value="10">
+                        </label>
+                        <label>Đuôi
+                        <input type="text" id="ext" class="u-full-width" value="@gmail.com">
+                        </label>
+                        <button class="button-primary u-full-width" style="font-family: math;" onclick="loadUsers()">Tạo</button>
+                        <a href="" id="txt_user" style="display: none"><button class="u-full-width">Tải Ngay File .txt</button></a>
+                        <a href="" id="csv_user" style="display: none"><button class="u-full-width">Tải Ngay File .csv</button></a>
+                     </div>
+                     <div class="six columns">
+                        <div id="result_user"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="js/app.js"></script>
+   </body>
 </html>
