@@ -554,19 +554,16 @@ function makeid(length) {
 function loadUsers() {
     const amount = document.getElementById('quantity_user').value;
     const len = document.getElementById('len').value;
-    const ext = document.getElementById('ext').value;
     let html = '<center><h2 style="font-family: math;">User ngẫu nhiên</h2></center>';
     let text = '';
     var csvFileData = [];
     let userid = '';
-    let fullid = '';
     html += '<ul class="list">';
     for (let i = 0; i < amount; i++) {
         userid = makeid(len);
-        fullid = userid + ext;
-        html += `<li>` + fullid + `</li>`;
-        text += fullid + "\n";
-        csvFileData.push([fullid, userid, ext]);
+        html += `<li>` + userid + `</li>`;
+        text += userid + "\n";
+        csvFileData.push([userid]);
     }
     html += '</ul>'
     document.querySelector('#result_user').innerHTML = html;
@@ -574,7 +571,7 @@ function loadUsers() {
     txtbtn.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     txtbtn.setAttribute('download', "NgauNhien.txt");
     txtbtn.style.display = 'block';
-    var csv = 'Đầy đủ,Id,Đuôi\n';
+    var csv = 'Id,\n';
     csvFileData.forEach(function(row) {
         csv += row.join(',');
         csv += "\n";
