@@ -1,3 +1,22 @@
+var mybutton = document.getElementById("myBtn");
+
+window.onscroll = function() {
+    scrollFunction()
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
 function openTab(evt, Name) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -538,11 +557,30 @@ function loadNames() {
     csvbtn.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(universalBOM + csv);
     csvbtn.download = 'NgauNhien.csv';
     csvbtn.style.display = 'block';
+    const btncopy = document.querySelector('#btncopyname');
+    btncopy.style.display = 'block';
+    const textcopy = document.querySelector('#textcopy');
+    textcopy.innerText = text;
+}
+
+function CopyName() {
+    var copyText = document.getElementById("textcopy");
+    var Len = copyText.innerHTML.length;
+    var textarea = document.createElement("textarea");
+    document.body.appendChild(textarea);
+    textarea.value = copyText.innerHTML.replace(/<br\s*\/?>/mg, "\n");
+    textarea.select();
+    textarea.setSelectionRange(0, Len);
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    var tooltip = document.getElementById("nameTooltip");
+    tooltip.style.display = 'block';
+    tooltip.innerHTML = "Đã copy";
 }
 
 function makeid(length) {
     var result = '';
-	var choice = document.querySelector('input[name="choice"]:checked').value;
+    var choice = document.querySelector('input[name="choice"]:checked').value;
     var characters = choice === "low" ? 'abcdefghijklmnopqrstuvwxyz0123456789' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
     for (var i = 0; i < length; i++) {
@@ -582,4 +620,25 @@ function loadUsers() {
     csvbtn.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(universalBOM + csv);
     csvbtn.download = 'NgauNhien.csv';
     csvbtn.style.display = 'block';
+    const btncopy = document.querySelector('#btncopyuser');
+    btncopy.style.display = 'block';
+    const textcopy = document.querySelector('#textusercopy');
+    textcopy.innerText = text;
+}
+
+function CopyUser() {
+    var copyText = document.getElementById("textusercopy");
+    var Len = copyText.innerHTML.length;
+    var textarea = document.createElement("textarea");
+    document.body.appendChild(textarea);
+    textarea.value = copyText.innerHTML.replace(/<br\s*\/?>/mg, "\n");
+    textarea.select();
+    textarea.setSelectionRange(0, Len);
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    var tooltip = document.getElementById("userTooltip");
+    tooltip.style.display = 'block';
+    tooltip.innerHTML = "Đã copy";
+    var pretooltip = document.getElementById("nameTooltip");
+    pretooltip.style.display = 'none';
 }
