@@ -50,7 +50,7 @@ var nu = [
     "Võ Thị Thanh Thư",
     "Ka Thu Linh",
     "Nguyễn Thị Phương",
-    "Lê Trần GiẢn Đơn",
+    "Lê Trần Giản Đơn",
     "Lê Thị Ngọc Phương",
     "Mạch Tuyết Trầm",
     "Nguyễn Thị Tú Trinh",
