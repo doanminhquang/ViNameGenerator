@@ -91,7 +91,6 @@ var nu = [
     "Nguyễn Thị Hương Dung",
     "Nguyễn Vân Anh",
     "Phạm Triệu Vy",
-    "H Đao Kbuôr",
     "Trần Nguyễn Lin Da Hoàng Oanh",
     "Trần Thị Thu Hà",
     "Thái Ngọc Yến",
