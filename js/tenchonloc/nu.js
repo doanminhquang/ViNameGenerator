@@ -3197,7 +3197,6 @@ var nu = [
     "Bùi Thị Khánh Linh",
     "Trần Thị Diễm Lệ",
     "Phạm Hoàng Diệp",
-    "Vanhthavy Thepphacha",
     "Vũ Đoàn Yến Nhi",
     "Lê Thị Thanh Hoa",
     "Mai Thị Ngọc Quỳnh",
