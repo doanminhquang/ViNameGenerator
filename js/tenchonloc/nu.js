@@ -3505,6 +3505,7 @@ var nu = [
     "Nguyễn Linh Nhi",
     "Nguyễn Linh Quyên",
     "Nguyễn Linh Tâm",
+    "Nguyễn Linh Thúy",
     "Nguyễn Long Nhung Hồng",
     "Nguyễn Ly Na",
     "Nguyễn Lâm Bảo Vân",
