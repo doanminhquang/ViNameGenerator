@@ -376,7 +376,9 @@ function loadIcon() {
     '<center><h2 style="font-family: math;">Icon ngẫu nhiên</h2></center>';
   let data = "";
   for (let i = 0; i < length; i++) {
-    data += icons_shuffle[getRandomInt(0, icons_shuffle.length)];
+    icon_tmp = icons_shuffle[getRandomInt(0, icons_shuffle.length)];
+    icon_tmp = icon_tmp.split("").reduce((prev, curr) => prev + curr);
+    data += icon_tmp;
   }
   document.querySelector("#btncopyicon").style.display = "block";
   document.querySelector("#texticoncopy").innerText = data;

@@ -8,20 +8,24 @@
   <link href="css/custom.css" rel="stylesheet" />
   <div class="bar">
     <aside>
-      <button class="btntab active" onclick='openTab(event,"name")'>
-        Tạo tên</button
-      ><button class="btntab" onclick='openTab(event,"user")'>
-        Tạo tên tài khoản</button
-      ><button class="btntab" onclick='openTab(event,"icons")'>
-        Tạo ngẫu nhiên icons
-      </button>
-      <button
-        id="GoToBottom"
-        style="float: right; border: none; height: 100%"
-        onclick="scrollToBottom()"
-      >
-        &#8623;
-      </button>
+      <div>
+        <button class="btntab active" onclick='openTab(event,"name")'>
+          Tạo tên</button
+        ><button class="btntab" onclick='openTab(event,"user")'>
+          Tạo tên tài khoản</button
+        ><button class="btntab" onclick='openTab(event,"icons")'>
+          Tạo ngẫu nhiên icons
+        </button>
+      </div>
+      <div>
+        <button
+          id="GoToBottom"
+          style="float: right; border: none; height: 100%"
+          onclick="scrollToBottom()"
+        >
+          &#8623;
+        </button>
+      </div>
     </aside>
   </div>
   <div class="tabcontent" id="name" style="display: block">
