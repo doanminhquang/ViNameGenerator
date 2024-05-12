@@ -117,7 +117,7 @@ aside > div:nth-child(2) {
 }
 @media (max-width: 501px) {
   .bar {
-    min-height: 111px;
+    min-height: 158px;
     aside {
       position: absolute;
       left: 0;
