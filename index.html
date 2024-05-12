@@ -13,8 +13,15 @@
           Tạo tên</button
         ><button class="btntab" onclick='openTab(event,"user")'>
           Tạo tên tài khoản</button
-        ><button class="btntab" onclick='openTab(event,"icons")'>
+        ><button
+          class="btntab"
+          id="btntabicons"
+          onclick='openTab(event,"icons")'
+        >
           Tạo ngẫu nhiên icons
+        </button>
+        <button class="btntab" id="btntabrv" onclick='openTab(event,"rv")'>
+          Tạo ngẫu nhiên rv
         </button>
       </div>
       <div>
@@ -25,6 +32,10 @@
         >
           &#8623;
         </button>
+        <label class="switch">
+          <input type="checkbox" id="show_more" checked />
+          <span class="slider round"></span>
+        </label>
       </div>
     </aside>
   </div>
@@ -314,7 +325,7 @@
     <div class="container">
       <div class="content" id="content">
         <h1>Tạo Icons Ngẫu Nhiên</h1>
-        <div id="generate-users">
+        <div id="generate-icons">
           <div class="row">
             <div class="columns six">
               <label
@@ -345,6 +356,54 @@
               <section id="texticoncopy"></section>
             </div>
             <div class="columns six"><div id="result_icon"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tabcontent" id="rv">
+    <div class="container">
+      <div class="content" id="content">
+        <h1>Tạo RV Ngẫu Nhiên</h1>
+        <div id="generate-rvs">
+          <div class="row">
+            <div class="columns six">
+              <label
+                >Số lượng chữ cái
+                <input
+                  id="quantity_rv_c"
+                  class="u-full-width"
+                  value="15"
+                  type="number"
+              /></label>
+              <label
+                >Số lượng chữ số
+                <input
+                  id="quantity_rv_n"
+                  class="u-full-width"
+                  value="13"
+                  type="number"
+              /></label>
+              <button
+                class="u-full-width button-primary"
+                onclick="loadRv()"
+                style="font-family: math"
+              >
+                Tạo
+              </button>
+              <section class="tooltip">
+                <button
+                  class="u-full-width"
+                  onclick="CopyRv()"
+                  style="display: none"
+                  id="btncopyrv"
+                >
+                  <span class="tooltiptext" id="rvTooltip"></span>Sao chép
+                </button>
+              </section>
+              <section id="textrvcopy"></section>
+            </div>
+            <div class="columns six"><div id="result_rv"></div></div>
           </div>
         </div>
       </div>
