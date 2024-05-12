@@ -116,14 +116,15 @@ aside > div:nth-child(2) {
   border-bottom: 5px solid #1eaedb;
 }
 @media (max-width: 501px) {
-  .bar {
+  input[type="checkbox"]#show_more:checked ~ .bar {
     min-height: 158px;
-    aside {
-      position: absolute;
-      left: 0;
-      top: 0;
-      text-align: center !important;
-    }
+  }
+
+  input[type="checkbox"]#show_more:checked ~ .bar aside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center !important;
   }
 }
 .tabcontent {
