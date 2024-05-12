@@ -375,8 +375,9 @@ function loadRv() {
     u = document.getElementById("quantity_rv_n").value,
     g = "";
   for (let m = 0; m < y; m++) g += i[getRandomInt(0, i.length)];
-  (g = capitalizeFirstLetter(g)), (g += ";rv:");
+  (g = '('+capitalizeFirstLetter(g)), (g += "; rv:");
   for (let p = 0; p < u; p++) g += s[getRandomInt(0, s.length)];
+  g+=')';
   (document.querySelector("#btncopyrv").style.display = "block"),
     (document.querySelector("#textrvcopy").innerText = g),
     (document.querySelector("#result_rv").innerHTML =
