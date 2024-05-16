@@ -369,20 +369,23 @@ function capitalizeFirstLetter(n) {
 function loadRv() {
   let n = "abcdefghijklmnopqrstuvwxyz".split(""),
     l = "0123456789".split(""),
-    i = shuffle(n),
-    s = shuffle(l),
-    y = document.getElementById("quantity_rv_c").value,
-    u = document.getElementById("quantity_rv_n").value,
-    g = "";
-  for (let m = 0; m < y; m++) g += i[getRandomInt(0, i.length)];
-  (g = '('+capitalizeFirstLetter(g)), (g += "; rv:");
-  for (let p = 0; p < u; p++) g += s[getRandomInt(0, s.length)];
-  g+=')';
-  (document.querySelector("#btncopyrv").style.display = "block"),
-    (document.querySelector("#textrvcopy").innerText = g),
+    i = "123456789".split(""),
+    s = shuffle(n),
+    y = shuffle(l),
+    u = document.getElementById("quantity_rv_c").value,
+    g = document.getElementById("quantity_rv_n").value,
+    m = "";
+  for (let p = 0; p < u; p++) m += s[getRandomInt(0, s.length)];
+  (m = "(" + capitalizeFirstLetter(m)),
+    (m += "; rv:"),
+    (m += i[getRandomInt(0, i.length)]);
+  for (let h = 1; h < g; h++) m += y[getRandomInt(0, y.length)];
+  (m += ")"),
+    (document.querySelector("#btncopyrv").style.display = "block"),
+    (document.querySelector("#textrvcopy").innerText = m),
     (document.querySelector("#result_rv").innerHTML =
       '<center><h2 style="font-family: math;">Rv ngẫu nhi\xean</h2></center><ul class="list"><li>' +
-      g +
+      m +
       "</li></ul>");
 }
 function CopyRv() {
