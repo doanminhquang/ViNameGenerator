@@ -140,29 +140,45 @@ function nonAccentVietnamese(n) {
     ""
   )).replace(/\u02C6|\u0306|\u031B/g, "");
 }
-function suggestions() {
+function suggestions(withOutSplit = false, withOutReplace = false) {
   var n = document.getElementById("user_cloc").checked,
     l = document.querySelector('input[name="user_gtinh"]:checked').value,
     i = document.getElementById("tt_input");
   if (n) {
-    let s = (
+    let s = [];
+    if (withOutSplit === false) {
+      (s = (
         "all" === l
           ? allname[getRandomInt(0, e.length)]
           : "Nam" === l
           ? nam[getRandomInt(0, e.length)]
           : nu[getRandomInt(0, e.length)]
-      ).split(" "),
-      y = s[0] + s[s.length - 1];
-    i.value = nonAccentVietnamese(y)
-      .replace(/[^a-zA-Z]/g, "")
-      .replace(/\s/g, "");
-  } else
-    i.value = (
+      ).split(" ")),
+        (y = s[0] + s[s.length - 1]);
+    } else {
+      s =
+        "all" === l
+          ? allname[getRandomInt(0, e.length)]
+          : "Nam" === l
+          ? nam[getRandomInt(0, e.length)]
+          : nu[getRandomInt(0, e.length)];
+      y = s;
+    }
+    i.value = nonAccentVietnamese(y);
+
+    if (withOutReplace === false) {
+      i.value = i.value.replace(/[^a-zA-Z]/g, "").replace(/\s/g, "");
+    }
+  } else {
+    i.value =
       nonAccentVietnamese(e[getRandomInt(0, e.length)]) +
-      nonAccentVietnamese(o[getRandomInt(0, o.length)])
-    )
-      .replace(/[^a-zA-Z]/g, "")
-      .replace(/\s/g, "");
+      nonAccentVietnamese(o[getRandomInt(0, o.length)]);
+
+    if (withOutReplace === false) {
+      i.value = i.value.replace(/[^a-zA-Z]/g, "").replace(/\s/g, "");
+    }
+  }
+  return i.value;
 }
 function padTo2Digits(n) {
   return n.toString().padStart(2, "0");
@@ -189,12 +205,29 @@ function formatDate(n, l) {
 function randomDate(n, l) {
   return new Date(n.getTime() + Math.random() * (l.getTime() - n.getTime()));
 }
+function convertName(name, count = 0) {
+  const parts = nonAccentVietnamese(name).split(" ");
+  const lastName = parts.pop();
+  const initials = parts.map((part) => part.charAt(0).toLowerCase()).join("");
+  let convertedName = `${lastName.toLowerCase()}${initials}`;
+
+  if (count > 0) {
+    convertedName += count;
+  }
+
+  return convertedName;
+}
 function makeid(n) {
   var l = document.querySelector('input[name="choice"]:checked').value,
     i = document.getElementById("tt").checked,
     s = document.getElementById("tt_random").checked,
-    y = "";
-  if ("birthday" !== l)
+    y = "",
+    sg = suggestions(
+      "fullname" === l ? true : false,
+      "fullname" === l ? true : false
+    ),
+    tt_input = document.getElementById("tt_input").value;
+  if ("birthday" !== l && "fullname" !== l)
     for (
       var u =
           "low" === l
@@ -209,15 +242,18 @@ function makeid(n) {
     )
       y += u.charAt(Math.floor(Math.random() * g));
   else {
-    let p = document.getElementById("format_choice").value;
-    y += formatDate(randomDate(new Date(1970, 0, 1), new Date()), p).replaceAll(
-      "/",
-      ""
-    );
+    if ("birthday" === l) {
+      let p = document.getElementById("format_choice").value;
+      y += formatDate(
+        randomDate(new Date(1970, 0, 1), new Date()),
+        p
+      ).replaceAll("/", "");
+    } else if ("fullname" === l) {
+      sg = convertName(sg);
+      tt_input = convertName(tt_input);
+    }
   }
-  return (
-    s && suggestions(), i ? document.getElementById("tt_input").value + y : y
-  );
+  return s && sg, i ? tt_input + y : y;
 }
 function loadUsers() {
   var n = document.getElementById("quantity_user").value,
@@ -226,6 +262,7 @@ function loadUsers() {
   let s =
       '<center><h2 style="font-family: math;">User ngẫu nhi\xean</h2></center>',
     y = "";
+  var counts = {};
   var u = [];
   let g,
     m = "",
@@ -233,14 +270,34 @@ function loadUsers() {
   if (((s += '<ul class="list">'), i.checked)) {
     p = "Đầy đủ,Id,Đu\xf4i,\n";
     var h = document.querySelector("#dotext").value;
-    for (let f = 0; f < n; f++)
-      (s += "<li>" + (g = (m = makeid(l)) + h) + "</li>"),
-        (y += g + "\n"),
-        u.push([g, m, h]);
+    for (let f = 0; f < n; f++) {
+      var name = makeid(l);
+      counts[name] = (counts[name] || 0) + 1;
+      var count = counts[name] > 1 ? counts[name] - 1 : 0;
+      if (count === 0) {
+        (s += "<li>" + (g = (m = name) + h) + "</li>"),
+          (y += g + "\n"),
+          u.push([g, m, h]);
+      } else {
+        (s += "<li>" + (g = (m = name + count) + h) + "</li>"),
+          (y += g + "\n"),
+          u.push([g, m, h]);
+      }
+    }
   } else {
     p = "Id,\n";
-    for (let b = 0; b < n; b++)
-      (s += "<li>" + (m = makeid(l)) + "</li>"), (y += m + "\n"), u.push([m]);
+    for (let b = 0; b < n; b++) {
+      var name = makeid(l);
+      counts[name] = (counts[name] || 0) + 1;
+      var count = counts[name] > 1 ? counts[name] - 1 : 0;
+      if (count === 0) {
+        (s += "<li>" + (m = name) + "</li>"), (y += m + "\n"), u.push([m]);
+      } else {
+        (s += "<li>" + (m = name + count) + "</li>"),
+          (y += m + "\n"),
+          u.push([m]);
+      }
+    }
   }
   (s += "</ul>"), (document.querySelector("#result_user").innerHTML = s);
   let T = document.querySelector("#txt_user");
