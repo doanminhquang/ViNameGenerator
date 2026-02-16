@@ -2,37 +2,46 @@ html {
   --scrollbarBG: #cfd8dc;
   --thumbBG: #90a4ae;
 }
+
 html,
 body {
   overflow-x: hidden;
 }
+
 body::-webkit-scrollbar {
   width: 11px;
 }
+
 body {
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
+
 body::-webkit-scrollbar-track {
   background: var(--scrollbarBG);
 }
+
 body::-webkit-scrollbar-thumb {
   background-color: var(--thumbBG);
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
 }
+
 body {
   background-image: linear-gradient(to right, #43e97b 0, #38f9d7 100%);
 }
+
 .content {
   margin-top: 40px;
 }
+
 h1 {
   font-family: math;
   color: #fff;
   text-align: center;
   font-size: 34px;
 }
+
 .list {
   font-family: math;
   list-style: none;
@@ -44,9 +53,11 @@ h1 {
   background: #dbf6ff;
   word-break: break-all;
 }
+
 .list li:last-child {
   margin: 0;
 }
+
 #generate-users,
 #generate-names,
 #generate-rvs,
@@ -55,12 +66,15 @@ h1 {
   padding: 50px;
   border-radius: 5px;
 }
+
 button {
   font-family: math;
 }
+
 #quantity {
   font-family: math;
 }
+
 .bar {
   min-height: 46px;
   background: #fff;
@@ -80,7 +94,7 @@ aside {
   width: calc(100% - 64px);
 }
 
-aside > div {
+aside>div {
   display: flex;
   height: auto;
   flex-wrap: wrap;
@@ -89,11 +103,11 @@ aside > div {
   flex-direction: row;
 }
 
-aside > div:nth-child(1) {
+aside>div:nth-child(1) {
   justify-content: flex-start;
 }
 
-aside > div:nth-child(2) {
+aside>div:nth-child(2) {
   justify-content: flex-end;
 }
 
@@ -106,36 +120,41 @@ aside > div:nth-child(2) {
   text-decoration: none;
   height: 100%;
 }
+
 .btntab:hover {
   color: #1877f2;
   border: 0;
 }
+
 .btntab:focus,
 .active {
   color: #1eaedb;
   border-bottom: 5px solid #1eaedb;
 }
+
 @media (max-width: 501px) {
-  input[type="checkbox"]#show_more:checked ~ .bar {
+  input[type="checkbox"]#show_more:checked~.bar {
     min-height: 158px;
   }
 
-  input[type="checkbox"]#show_more:checked ~ .bar aside {
+  input[type="checkbox"]#show_more:checked~.bar aside {
     position: absolute;
     left: 0;
     top: 0;
     text-align: center !important;
   }
 }
+
 .tabcontent {
   display: none;
   padding: 6px 12px;
   border-top: none;
 }
-#GoToTop {
+
+#GoToTop,
+#GoToBottom {
   display: none;
   position: fixed;
-  bottom: 20px;
   right: 30px;
   z-index: 99;
   font-size: 18px;
@@ -151,14 +170,23 @@ aside > div:nth-child(2) {
   width: 50px;
   border: 1px solid #fff;
 }
-#GoToTop:hover {
+
+#GoToTop,
+#GoToBottom {
+  bottom: 20px;
+}
+
+#GoToTop:hover,
+#GoToBottom:hover {
   background-color: #1eaedb;
 }
+
 .tooltip {
   position: relative;
   display: inline-block;
   width: 100%;
 }
+
 .tooltip .tooltiptext {
   display: none;
   visibility: hidden;
@@ -176,6 +204,7 @@ aside > div:nth-child(2) {
   opacity: 0;
   transition: opacity 0.3s;
 }
+
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
@@ -186,10 +215,12 @@ aside > div:nth-child(2) {
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
+
 #textcopy,
 #textusercopy,
 #texticoncopy,
@@ -197,9 +228,7 @@ aside > div:nth-child(2) {
   font-family: math;
   display: none;
 }
-#GoToBottom {
-  display: none;
-}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -237,15 +266,15 @@ aside > div:nth-child(2) {
   transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #2196f3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -258,6 +287,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
 #btntabicons,
 #btntabrv {
   display: none;
